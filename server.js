@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser');
 const dotenv = require('dotenv')
 const morgan = require('morgan')
 
@@ -16,6 +17,12 @@ const app = express()
 
 // use HTTP request logger middleware if server is running in development mode
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
+
+// body parser middleware
+app.use(bodyParser.json())
+
+// use routes
+app.use('/api/items', require('./routes/api/item'))
 
 const PORT = process.env.PORT || 5000
 
