@@ -12,7 +12,7 @@ class Todos extends Component {
                 <TransitionGroup className="shopping-list">
                     {todos.map(todo => (
                         <CSSTransition key={todo.id} timeout={500} classNames="fade">
-                            <TodoItem todo={todo} key={todo.id} deleteTodo={deleteTodo}/>
+                            <TodoItem todo={todo} key={todo._id} deleteTodo={deleteTodo}/>
                         </CSSTransition>
                     ))}
                 </TransitionGroup>
