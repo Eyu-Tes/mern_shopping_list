@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node server", 
-    "dev": "cross-env NODE_ENV=development nodemon server"
+    "server": "cross-env NODE_ENV=development nodemon server", 
+    "client": "npm start --prefix client", 
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "Eyoab Tesfaye",
   "license": "ISC",

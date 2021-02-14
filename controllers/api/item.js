@@ -7,7 +7,6 @@ module.exports.getAllItems = async (req, res) => {
     try {
         const items = await Item.find()
         .sort({date: 'desc'})
-        console.log(items)
         res.json(items)
     } catch (err) {
         console.log(err)
