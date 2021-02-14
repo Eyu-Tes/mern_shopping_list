@@ -4,17 +4,29 @@ import {v4 as uuidv4} from 'uuid'
 import axios from 'axios'
 import Navbar from './components/layout/Navbar'
 import Todos from './components/todos/Todos'
-import AddTodo from './components/todos/AddTodo'
+import AddButton from './components/todos/AddButton'
+import TodoModal from './components/todos/TodoModal'
 import Spinner from './components/layout/Spinner'
 import './App.css'
 
 const App = () => {
   const [todos, setTodos] = useState([])
   const [loading, setLoading] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [err, setErr] = useState('')
 
+  const toggleModal = () => {
+    setErr('')
+    setModal(!modal)
+  }
+  
   const addTodo = (name) => {
     axios.post('/api/items/', {name})
-    .then(res => refreshList())
+    .then(res => {
+      refreshList()
+      setModal(!modal)
+    })
+    .catch(error => setErr('Field cannot be empty!'))
   }
 
   const deleteTodo = (id) => {
@@ -39,8 +51,9 @@ const App = () => {
     <div className="App">
       <Navbar/>
       <Container>
-        <AddTodo addTodo={addTodo} />
+        <AddButton toggleModal={toggleModal}/>
         <Todos todos={todos} deleteTodo={deleteTodo}/>
+        {modal && <TodoModal onSave={addTodo} toggle={toggleModal} err={err}/>}
         {loading && <Spinner/>}
       </Container>
     </div>

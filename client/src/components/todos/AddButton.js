@@ -1,16 +1,13 @@
 import {Container, Button} from 'reactstrap'
 
-const AddTodo = ({addTodo}) => {
+const AddButton = ({toggleModal}) => {
     return (
         <Button
             color="dark"
             style={{marginBottom: '2rem', borderRadius: '0'}}
-            onClick={() => {
-                const name = prompt('Enter Item')
-                if(name) addTodo(name)
-            }}
+            onClick={toggleModal}
         >Add Item</Button>
     )
 }
 
-export default AddTodo
+export default AddButton

@@ -20,7 +20,7 @@ module.exports.createItem = async (req, res) => {
         await newItem.save()
         res.status(201).json(newItem)
     } catch (err) {
-        console.log(err)
+        res.status(404).json({'msg': 'Field cannot be empty!'})
     }
 }
 

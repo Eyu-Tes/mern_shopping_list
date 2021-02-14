@@ -19,3 +19,7 @@
     opacity: 0.01;
     transition: opacity 1000ms ease-out;
 }
+
+.modal-content {
+    border-radius: 0;
+}
