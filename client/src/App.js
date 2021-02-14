@@ -26,7 +26,8 @@ const App = () => {
       refreshList()
       setModal(!modal)
     })
-    .catch(error => setErr('Field cannot be empty!'))
+    .catch(error => setErr(error.response.data.msg))
+    // To access error message use: error.response.data
   }
 
   const deleteTodo = (id) => {
